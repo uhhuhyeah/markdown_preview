@@ -6,22 +6,36 @@ require File.join('.', File.dirname(__FILE__), '..', 'lib', 'converter.rb')
 
 describe Converter do
 	before do
-		@markdown = '# I am a heading'
-		@converter = Converter.new
+		@path = File.join('.', File.dirname(__FILE__), 'fixtures', 'markdown.md')
+		@converter = Converter.new(@path)
 	end
 
-	describe '#process' do
+	describe '#initialize' do
+		it 'should read Markdown from a file'	do	
+			content = File.open(@path) {|f| f.read }
+			@converter.raw_markdown.must_equal content
+		end
+	end
+
+	describe '#process' do	
+		before do
+			@converter.process
+		end
 		it 'should use RDiscount to process markdown' do
-			@converter.process(@markdown)
+			content = File.open(@path) {|f| f.read }
 			@converter.processed_markdown.must_be_instance_of RDiscount
-			@converter.processed_markdown.text.must_equal @markdown
+			@converter.processed_markdown.text.must_equal content
 		end
 	end
 
 	describe '#html' do
+		before do
+			@converter.process
+		end
+
 		it 'should render HTML from Markdown' do
-			@converter.process(@markdown)
-			@converter.html.must_match '<h1>I am a heading</h1>'
+			puts @converter.html.class
+			@converter.html.must_equal "<h1>Hello, World</h1>\n"
 		end
 	end
 end
