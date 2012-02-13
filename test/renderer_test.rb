@@ -41,7 +41,7 @@ describe Renderer do
 		before do
 			@markdown = '<h1>Foo</h1>'
 			@renderer = Renderer.new(@markdown, @template)
-			@renderer.process
+			@renderer.process(false)
 		end
 
 		it 'should write rendered file to disk' do

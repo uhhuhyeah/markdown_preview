@@ -16,11 +16,13 @@ class Renderer
 		File.join(File.expand_path('.'), 'output', filename)
 	end
 
-	def process
+	def process(open=true)
 		@content = markdown
 		erb_renderer = ERB.new(template)
 		f = File.new(destination_path, 'w')
 		f.puts erb_renderer.result(binding)
 		f.close
+
+		system "open #{destination_path}" if open
 	end
 end
