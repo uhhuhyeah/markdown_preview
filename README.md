@@ -14,4 +14,4 @@ Eg
 
 #### Questions/Comments
 
-{David A McClain}[mailto:david@uhhuhyeah.com]
+[David A McClain](mailto:david@uhhuhyeah.com)
