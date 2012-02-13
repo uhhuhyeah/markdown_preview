@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-## ruby markdown_preview /path/to/markdown_file.md /path/to/blog_template.erb
 require './lib/converter.rb'
 require './lib/renderer.rb'
 
