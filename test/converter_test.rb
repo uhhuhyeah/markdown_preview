@@ -34,7 +34,6 @@ describe Converter do
 		end
 
 		it 'should render HTML from Markdown' do
-			puts @converter.html.class
 			@converter.html.must_equal "<h1>Hello, World</h1>\n"
 		end
 	end
